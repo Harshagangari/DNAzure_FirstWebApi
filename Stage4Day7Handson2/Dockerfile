@@ -32,7 +32,7 @@ RUN dotnet restore
 COPY . .
 RUN dotnet build "Stage4Day7Handson2.csproj" -c Release -o /app/build
 
-FROM build AS publish #edited
+FROM build AS publish
 RUN dotnet publish "Stage4Day7Handson2.csproj" -c Release -o /app/out
 #*RUN dotnet publish -c Release -o /out
 # Build runtime image
