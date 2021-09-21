@@ -30,7 +30,11 @@ COPY *.csproj ./
 RUN dotnet restore
 # Copy everything else and build
 COPY . .
-RUN dotnet publish -c Release -o /out
+RUN dotnet build "Stage4Day7Handson2.csproj" -c Release -o /app/build
+
+FROM build AS publish #edited
+RUN dotnet publish "Stage4Day7Handson2.csproj" -c Release -o /app/out
+#*RUN dotnet publish -c Release -o /out
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:2.2
 WORKDIR /app
